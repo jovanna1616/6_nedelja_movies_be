@@ -27,11 +27,12 @@ class MovieController extends Controller
         $rules = Movie::STORE_RULES;
         $request->validate($rules);
 
-        $movie->name = $request->input('mark');
-        $movie->director = $request->input('model');
-        $movie->duration = $request->input('max_speed');
+        $movie->name = $request->input('name');
+        $movie->director = $request->input('director');
         $movie->image_url = $request->input('image_url');
-        $movie->release_date = $request->input('is_automatic');
+        $movie->duration = $request->input('duration');
+        $movie->release_date = $request->input('release_date');
+        $movie->genres = $request->input('genres');
         
         // before save try to find if movie's name and release date already exist in db
         $existingMovie = Movie::where('name', '=', Input::get('name'))->first();
@@ -53,9 +54,10 @@ class MovieController extends Controller
 
         $movie->name = $request->input('name');
         $movie->director = $request->input('director');
-        $movie->duration = $request->input('duration');
         $movie->image_url = $request->input('image_url');
+        $movie->duration = $request->input('duration');
         $movie->release_date = $request->input('release_date');
+        $movie->genres = $request->input('genres');
 
         $request->validate($rules);
         $movie->save();

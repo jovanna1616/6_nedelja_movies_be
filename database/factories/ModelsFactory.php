@@ -9,7 +9,7 @@ $factory->define(App\Movie::class, function (Faker $faker) {
         'image_url' => $faker->imageUrl,
         'duration' => $faker->biasedNumberBetween($min = 1, $max = 4),
         // 'release_date' => $faker->dateTimeThisCentury($max = 'now', $timezone = date_default_timezone_get()),
-        'release_date' => $faker->dateTime(),
+        'release_date' => $faker->date(),
         'genres' => $faker->words
     ];
 });
