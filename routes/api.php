@@ -14,17 +14,18 @@ use Illuminate\Http\Request;
 */
 
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::post('/login', 'Auth\LoginController@authenticate');
 
 // index
-Route::middleware('api')->get('/movies', 'MovieController@index');
+Route::middleware('jwt')->get('/movies', 'MovieController@index');
 // show
-Route::middleware('api')->get('/movies/{id}', 'MovieController@show');
+Route::middleware('jwt')->get('/movies/{id}', 'MovieController@show');
 // store
-Route::middleware('api')->post('/movies', 'MovieController@store');
+Route::middleware('jwt')->post('/movies', 'MovieController@store');
 // update
-Route::middleware('api')->put('/movies/{id}', 'MovieController@update');
+Route::middleware('jwt')->put('/movies/{id}', 'MovieController@update');
 // delete
-Route::middleware('api')->delete('/movies/{id}', 'MovieController@destroy');
+Route::middleware('jwt')->delete('/movies/{id}', 'MovieController@destroy');
